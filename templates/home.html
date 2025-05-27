@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelPlan</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <!--Header Section-->
+    <header>
+        <nav>
+            <div class="logo">TravelPlan</div>
+            <ul>
+                <!-- <li><a href="{% url 'login' %}">Destinations</a></li> -->
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'signup' %}">Signup</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!--A little Intro kind of section-->
+    <section id="home" class="hero">
+        <h1>Explore India With Us</h1>
+        <p>Find your perfect destination and travel with ease.</p>
+        <a href="{% url 'login' %}" class="btn">Discover More</a>
+    </section>
+    
+    <!--Popular destinations section-->
+    <section class="destinations">
+        <h2>Popular Destinations</h2>
+        <div class="destination-container">
+            <div class="destination">
+               <a href="{% url 'login' %}"><img src="{% static 'beach-andaman.jpeg' %}" alt="Beach"></a>
+                <p>Starting at Just ₹19000</p>
+                <h3>Andaman & Nicobar Islands</h3>
+            </div>
+            <div class="destination">
+                <a href="{% url 'login' %}"><img src="{% static 'mountain-manali.avif' %}" alt="Mountains"></a>
+                <p>Starting at Just ₹9000</p>
+                <h3>Manali, Himachal Pradesh</h3>
+            </div>
+            <div class="destination">
+                <a href="{% url 'login' %}"><img src="{% static 'city-jaiselmer.jpeg' %}" alt="City"></a>
+                <p>Starting at Just ₹10000</p>
+                <h3>Jaisalmer, Rajasthan</h3>
+            </div>
+        </div>
+    </section>
+    
+    <button class="btn-2"><a href="{% url 'login' %}">Explore More Places</a></button>
+    
+    <!--Intro for more approachable site-->
+    <section class="intro">
+        <h2>Why Choose Us ?</h2>
+        <p>Discover unparalleled travel experiences at <strong><em>TravelPlan</em></strong>, your one-stop destination for 
+        affordable trip bookings. We prioritize your satisfaction, offering top-notch  <strong>customer service
+       24/7</strong> to ensure seamless journeys. Our user-centric approach guarantees <strong>personalized recommendations</strong>,
+        expertly curated to match your unique preferences and interests. With <strong>exclusive deals and 
+        unbeatable prices</strong>, you'll enjoy stress-free travel planning, from booking flights and hotels to
+        exploring exciting activities and destinations. Let us guide you to unforgettable adventures, 
+        <strong>tailored just for you</strong>.</p>
+    </section>
+     
+    <!--Reviews Section-->
+    <section class="reviews">
+        <h2>What Our Travelers Say</h2>
+        <div class="review-cards">
+          
+          <div class="review-card">
+            <img src="{% static 'avatar-logo.webp' %}" alt="User photo">
+            <h4>User1</h4>
+            <p>"TravelPlan made my trip absolutely perfect. Everything was taken care of!"</p>
+            <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+          </div>
+      
+          <div class="review-card">
+            <img src="{% static 'avatar-logo.webp' %}" alt="User photo">
+            <h4>User2</h4>
+            <p>"Incredible value for money and top-notch customer service. Highly recommended!"</p>
+            <div class="stars">⭐️⭐️⭐️⭐️</div>
+          </div>
+      
+          <div class="review-card">
+            <img src="{% static 'avatar-logo.webp' %}" alt="User photo">
+            <h4>User3</h4>
+            <p>"The personalized trip suggestions were spot on. It felt like a trip made just for me."</p>
+            <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+          </div>
+      
+        </div>
+      </section>
+
+     <!--Footer Section-->
+    <footer>
+        <h3 id="contact">Contact Us</h3>
+        <h4>Email: travelplan@business.com</h4>
+        <h4>Toll Free No: 1111 2200 33</h4>
+        &nbsp;
+        <h3>Follow Us On</h3>
+        <a href="#" class="social-logo"><img src="{% static 'fb-logo.webp' %}" alt="fb-logo"></a>
+        <a href="#" class="social-logo"><img src="{% static 'insta-logo.webp' %}" alt="insta-logo"></a>
+        <a href="#" class="social-logo"><img src="{% static 'pinterest-logo.webp' %}" alt="pinterest-logo"></a>
+        <p class="copy">&copy; 2025 TravelPlan. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

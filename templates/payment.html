@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Payment</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h2>Booking for: {{ destination.Destination }}</h2>
+<p>Amount: {{ destination.Price }}</p>
+
+
+<!-- final payment button -->
+<button onclick="openPaymentModal('{{ destination.Destination }}', '{{ destination.Price }}')">
+    Pay Now
+</button>
+
+<!-- Popup model -->
+<div id="paymentModel" class="model">
+  <div class="model-content">
+    <span class="close" onclick="closePaymentModal()">&times;</span>
+    <h2 id="modelTitle">Enter Payment Details</h2>
+
+    <label>Card Number</label>
+    <input type="text" placeholder="xxxx xxxx xxxx xxxx"><br>
+
+    <label>Expiry Date</label>
+    <input type="text" placeholder="MM/YY"><br>
+
+    <label>CVV</label>
+    <input type="text" placeholder="xxx"><br>
+
+    <button id="PayButton">Pay</button>
+  </div>
+</div>
+
+
+<!-- javascript code for model to work -->
+<script>
+    function openPaymentModal(destinationName, amount) {
+      document.getElementById('modelTitle').innerText = `Pay ₹${amount} for ${destinationName}`;
+      document.getElementById('PayButton').innerText = `Pay ₹${amount}`;
+    
+      document.getElementById('PayButton').onclick = function() {
+        fakePayment(destinationName, amount);
+      };
+    
+      document.getElementById('paymentModel').style.display = 'block';
+    }
+    
+    function closePaymentModal() {
+      document.getElementById('paymentModel').style.display = 'none';
+    }
+    
+    function fakePayment(destinationName, amount) {
+      alert(`✅ Payment Successful!\nYou paid ₹${amount} for ${destinationName}.`);
+      closePaymentModal();
+    }
+    </script>
+    
+
+</body>
+</html>

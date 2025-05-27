@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="profile-body">
+    <div class="main-profile-container">
+        <h1 class="profile-heading">My Profile</h1>
+
+        <div class="user-info">
+            <div class="info-row"><span>Username:</span> {{ user.username }}</div>
+            <div class="info-row"><span>Email:</span> {{ user.email }}</div>
+            <div class="info-row"><span>Full Name:</span> {{ user.first_name }} {{ user.last_name }}</div>
+        </div>
+
+        <h2 class="profile-heading">Booking History</h2>
+        {% if bookings %}
+            <table class="booking-table">
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Dates</th>
+                        <th>No. of Days</th>
+                        <th>People</th>
+                        <th>Total Budget</th>
+                        <th>Booked On</th>
+                        <th>View Itinerary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.destination }}</td> <!-- Fix: destination is a string -->
+                            <td>{{ booking.start_date }} to {{ booking.end_date }}</td>
+                            <td>{{ booking.num_days }}</td> <!-- Match your model field -->
+                            <td>{{ booking.num_people }}</td> <!-- Match your model field -->
+                            <td>₹{{ booking.total_budget }}</td>
+                            <td>{{ booking.timestamp|date:"Y-m-d H:i" }}</td> <!-- Match your model timestamp -->
+                            <td>
+                                <a href="{% url 'view_itinerary' booking.id %}">View Itinerary</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No bookings yet.</p>
+        {% endif %}
+
+        <a class="iti-btn" href="{% url 'loged_home' %}" style="text-align: center;">Go to Home Page</a>
+    </div>
+</body>
+</html>

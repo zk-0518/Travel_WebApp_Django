@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+     <!--Header Section-->
+     <header>
+        <nav>
+            <div class="logo">TravelPlan</div>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Intro line-->
+    <h2 style="text-align:center; font-size:2em;">Choose the place that you love </h2>
+
+    <!--Destination List-->
+    <section class="destinations">
+        <div class="destination-container">
+            <div class="destination">
+                <img src="{% static 'beach-andaman.jpeg'%}" alt="Beach">
+                <p>Starting at Just ₹30000</p>
+                <h3>Andaman & Nicobar Islands</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'mountain-manali.avif' %}" alt="Mountains">
+                <p>Starting at Just ₹25000</p>
+                <h3>Manali, Himachal Pradesh</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'city-jaiselmer.jpeg' %}" alt="City">
+                <p>Starting at Just ₹20000</p>
+                <h3>Jaisalmer, Rajasthan</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'shimla.jpg.jpg' %}" alt="City">
+                <p>Starting at Just ₹15000</p>
+                <h3>Shimla, Himachal Pradesh</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'dharamshala.jpeg' %}" alt="City">
+                <p>Starting at Just ₹10000</p>
+                <h3>Dharamshala, Himachal Pradesh</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'spiti.jpeg' %}" alt="City">
+                <p>Starting at Just ₹10000</p>
+                <h3>Spiti Valley, Himachal Pradesh</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'kasol.jpeg' %}" alt="City">
+                <p>Starting at Just ₹18000</p>
+                <h3>Kasol, Himachal Pradesh</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'kashmir.jpeg' %}" alt="City">
+                <p>Starting at Just ₹30000</p>
+                <h3>Kashmir, Jammu & Kashmir</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'ladakh.jpeg' %}" alt="City">
+                <p>Starting at Just ₹20000</p>
+                <h3>Ladakh</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'kodaikanal.jpeg' %}" alt="City">
+                <p>Starting at Just ₹10000</p>
+                <h3>Kodaikanal, Tamil Nadu</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'coorg.jpeg' %}" alt="City">
+                <p>Starting at Just ₹20000</p>
+                <h3>Coorg, Karnataka</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'munnar.jpeg' %}" alt="City">
+                <p>Starting at Just ₹25000</p>
+                <h3>Munnar, Kerala</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'goa.jpeg' %}" alt="City">
+                <p>Starting at Just ₹20000</p>
+                <h3>Goa</h3>
+            </div>
+            <div class="destination">
+                <img src="{% static 'lakshadweep.jpeg' %}" alt="City">
+                <p>Starting at Just ₹35000</p>
+                <h3>Lakshadweep</h3>
+            </div>
+        </div>
+    </section>
+    <!--Footer-->
+    <footer>
+        <h3 id="contact">Contact Us</h3>
+        <h4>Email: travelplan@business.com</h4>
+        <h4>Toll Free No: 1111 2200 33</h4>
+        &nbsp;
+        <h3>Follow Us On</h3>
+        <a href="#" class="social-logo"><img src="{% static 'fb-logo.webp' %}" alt="fb-logo"></a>
+        <a href="#" class="social-logo"><img src="{% static 'insta-logo.webp' %}" alt="insta-logo"></a>
+        <a href="#" class="social-logo"><img src="{% static 'pinterest-logo.webp' %}" alt="pinterest-logo"></a>
+        <p class="copy">&copy; 2025 TravelPlan. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

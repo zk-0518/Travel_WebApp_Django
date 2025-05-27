@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!--Main content  -->
+<div class="iti-container">
+    <h1 class="iti-title">Itinerary for {{ destination }}</h1>
+    
+    <!-- {% if image_url %}
+    <div class="iti-image">
+        <img src="{{ image_url }}" alt="{{ destination }}">
+    </div>
+    {% endif %} -->
+
+    {% for day in itinerary %}
+        <div class="iti-day">
+            <h2>Day {{ day.day }}</h2>
+            
+            {% if day.activities %}
+                <div class="iti-activity">
+                    {% for place in day.activities %}
+                        <div class="iti-act-card">
+                            {% if place.Title %}
+                                <h3>{{ place.Title }}</h3>
+                            {% endif %}
+                            
+                            {% if place.Category %}
+                                <p><strong>Category:</strong> {{ place.Category }}</p>
+                            {% endif %}
+                            
+                            <p><strong>Spot:</strong> {{ place.PopularSpot }}</p>
+                            <p><strong>Activities:</strong> {{ place.Activities }}</p>
+                            <p><strong>Price:</strong> ₹{{ place.Price }}</p>
+                            <!-- {% if place.image_url %}
+                                <img class="activity-img" src="{{ place.image_url }}" alt="{{ place.PopularSpot }}">
+                            {% endif %} -->
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No activities planned for this day.</p>
+            {% endif %}
+            
+            <div class="iti-total">
+                <p><strong>Total Time:</strong> {{ day.total_hours }} hrs</p>
+                <p class="day-cost" data-cost="{{ day.total_cost }}"><strong>Total Cost:</strong> ₹{{ day.total_cost }}</p>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+
+    <button class="btn-2" onclick="openPaymentModel('{{ destination.Destination }}')">Book Now</button>
+
+ <!-- payment popup model -->
+ <div id="paymentModel" class="model">
+    <div class="model-content">
+      <span class="close" onclick="closePaymentModal()">&times;</span>
+      <h2>Booking your Trip</h2>
+      <!-- <p id="paymentAmount">Amount:</p>&nbsp; -->
+      <label for="cardNumberInput">Card Number</label>
+      <input id="cardNumberInput" type="text" placeholder="xxxx xxxx xxxx xxxx"><br>
+
+      <label for="expiryDateInput">Expiry Date</label>
+      <input id="expiryDateInput" type="text" placeholder="MM/YY"><br>
+
+      <label for="cvvInput">CVV</label>
+      <input id="cvvInput" type="text" placeholder="xxx"><br>
+
+      <label for="amount">Total Amount</label>
+      <input id="amount" type="text" placeholder="xxxxx"><br>
+      <br>
+      <button onclick="confirmPayment()">Confirm Payment</button>
+    </div>
+  </div>
+  
+ 
+</div>
+
+ <!-- js logic for popup -->
+ <script>
+    function openPaymentModel(name) {
+  // Calculate total cost from all days
+  const dayCosts = document.querySelectorAll('.day-cost');
+  let total = 0;
+
+  dayCosts.forEach(day => {
+    const cost = parseFloat(day.getAttribute('data-cost'));
+    if (!isNaN(cost)) total += cost;
+  });
+
+// setting total amount in model
+  document.getElementById("amount").value = total.toFixed(2);
+  document.getElementById("paymentModel").style.display = "block";
+  document.body.classList.add("no-scroll");
+}
+    
+function confirmPayment() {
+const cardNumber = document.getElementById("cardNumberInput").value.trim();
+const expiryDate = document.getElementById("expiryDateInput").value.trim();
+const cvv = document.getElementById("cvvInput").value.trim();
+
+if (!cardNumber || !expiryDate || !cvv) {
+alert("Please fill out all payment fields.");
+return;
+}
+
+// Basic validation
+if (!/^\d{16}$/.test(cardNumber.replace(/\s+/g, ''))) {
+alert("Card number must be 16 digits.");
+return;
+}
+
+if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+alert("Expiry date must be in MM/YY format.");
+return;
+}
+
+if (!/^\d{3}$/.test(cvv)) {
+alert("CVV must be 3 digits.");
+return;
+}
+
+// If all checks pass
+alert("Payment successful!");
+closePaymentModal(); //will close popup
+window.location.href = "/profile"; 
+}
+    
+
+
+
+function closePaymentModal() {
+document.getElementById("paymentModel").style.display = "none";
+document.body.classList.remove("no-scroll");
+}
+
+
+</script>
+
+
+</body>
+</html>

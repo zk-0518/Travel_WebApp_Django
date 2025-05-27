@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    
+    <!-- This page reuses the same template, shows details for whichever item the user clicked based on id ! -->
+    <div class="destination-detail">
+        <h1 class="dd-title">{{ destination.Destination }}</h1>
+        <img class="dd-img" src="{{ destination.image_url }}" alt="{{ destination.Destination }}">
+        <section class="dd-detail">
+        <p><strong>State:</strong> {{ destination.State }}</p>
+        <p><strong>Popular Spots:</strong> {{ destination.PopularSpot }}</p>
+        <p><strong>Activities:</strong> {{ destination.Activities }}</p>
+        <p><strong>Category:</strong> {{ destination.Category }}</p>
+        <p><strong>Starting at Just {{ destination.Price }} / Person</strong></p>
+    </section>
+    <section class="dd-description">
+        <p class="dct-title">{{destination.Title}}</p>
+        <p>{{ destination.Description }}
+            <br>
+            <!-- <button class="btn-2" onclick="openPaymentModel('{{ destination.Destination }}', '{{ destination.Price}}')">Book Now</button> -->
+        </p>
+    </section>
+
+     <!-- user detiail form for itinerary -->
+     <h3 class="iti-form-title">Plan Your Trip</h3>
+
+     <form class="iti-form" method="get" action="{% url 'generate_itinerary' %}">
+       <!-- Hidden field to send the current destination name -->
+       <input type="hidden" name="destination" value="{{ destination.Destination }}">
+     
+       <label for="days">Number of Days:</label>
+       <input type="number" name="days" id="days" min="1" required><br>
+     
+       <label for="budget">Total Budget (₹):</label>
+       <input type="number" name="budget" id="budget" min="0" required><br>
+     
+       <label for="people">Number of People:</label>
+       <input type="number" name="people" id="people" min="1" required><br><br>
+     
+       <button type="submit" class="iti-btn">Generate Itinerary</button>
+     </form>
+     
+
+        <a class="btn-3"  href="{% url 'destination_list' %}">Back to all destinations</a>
+    </div>
+
+    <!-- recommendation engine -->
+    {% if recommendations %}
+    <h2 class="rec-title">You Might Also Like</h2>
+    <div class="rec-destination-grid">
+      {% for rec in recommendations %}
+        <div class="rec-card">
+          <img src="{{ rec.image_url }}" alt="{{ rec.Destination }}">
+          <h3>{{ rec.Destination }}</h3>
+          <p>{{ rec.Title|truncatewords:15 }}</p>
+          <p><strong>Price:</strong> ₹{{ rec.Price }}</p>
+          <a class="rec-btn" href="{% url 'destination_detail' rec.id %}">View Details</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+    
+</body>
+</html>

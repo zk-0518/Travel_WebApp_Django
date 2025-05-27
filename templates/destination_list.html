@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+     <!--Header Section-->
+     <header>
+        <nav>
+            <div class="logo">TravelPlan</div>
+            <ul>
+                <li><a href="{% url 'loged_home' %}">Home</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- <li><a href="{% url 'login' %}">Login</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+     <!-- Main section -->
+
+    <div class="trip-container">
+        <h1 style="text-align:center; font-size:2em;">Choose the place that you love</h1>
+
+    
+     <!-- For drop down menu to select category -->
+
+        <form method="get" style="text-align:center; margin-bottom:20px;">
+            <select class="category-option" name="category" onchange="this.form.submit()" style="padding:8px; font-size:16px;">
+              <option value="">All Categories</option>
+              {% for cat in categories %}
+                <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>{{ cat }}</option>
+              {% endfor %}
+            </select>
+        </form>
+
+        <div class="trip-card-grid">
+            {% for d in destinations %}
+                <div class="trip-card">
+                    <img src="{{ d.image_url }}" alt="{{ d.Destination }}">
+                    <h3>{{ d.Destination }}</h3>
+                    <p><em>{{ d.State }}</em></p>
+                    <p><strong>Popular Spots:</strong> &nbsp;{{ d.PopularSpot }}</p>
+                    <p><strong>Activites:</strong> &nbsp;{{ d.Activities }}</p>
+
+          <!-- Add a button/link to open the description page -->
+            <a href="{% url 'destination_detail' d.id %}" class="btn">View More</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    
+     <!--Footer-->
+     <footer>
+        <h3 id="contact">Contact Us</h3>
+        <h4>Email: travelplan@business.com</h4>
+        <h4>Toll Free No: 1111 2200 33</h4>
+        &nbsp;
+        <h3>Follow Us On</h3>
+        <a href="#" class="social-logo"><img src="{% static 'fb-logo.webp' %}" alt="fb-logo"></a>
+        <a href="#" class="social-logo"><img src="{% static 'insta-logo.webp' %}" alt="insta-logo"></a>
+        <a href="#" class="social-logo"><img src="{% static 'pinterest-logo.webp' %}" alt="pinterest-logo"></a>
+        <p class="copy">&copy; 2025 TravelPlan. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

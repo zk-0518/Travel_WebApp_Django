@@ -5,5 +5,3 @@ This website uses MongoDB as a database whose cluster is cloud based (Mongo Atla
 A file is provided containing few datasets, to properly run this site you need to setup mongodb along with atlas on your system then change django settings to locate your database, then you can add your own data or use this file's datasets.
 
 All the necessary files are uploaded.
-
-Additionally here is the link for zip folder : https://drive.google.com/file/d/1u61kxQkq052vF_GJuMGxuQNy4Gs6aNXQ/view?usp=sharing
